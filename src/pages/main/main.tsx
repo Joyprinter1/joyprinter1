@@ -47,6 +47,7 @@ import './main.scss';
 const ChartWrapper = lazy(() => import('../chart/chart-wrapper'));
 const Tutorial = lazy(() => import('../tutorials'));
 const AnalysisTools = lazy(() => import('../analysis-tools/analysis-tools'));
+const TradingBots = lazy(() => import('../trading-bots/trading-bots'));
 
 const AppWrapper = observer(() => {
     const { connectionStatus } = useApiBase();
@@ -79,7 +80,7 @@ const AppWrapper = observer(() => {
     const { clear } = summary_card;
     const { DASHBOARD, BOT_BUILDER } = DBOT_TABS;
     const init_render = React.useRef(true);
-    const hash = ['dashboard', 'bot_builder', 'chart', 'analysis_tools', 'tutorial'];
+    const hash = ['dashboard', 'bot_builder', 'chart', 'analysis_tools', 'trading_bots', 'tutorial'];
     const { isDesktop } = useDevice();
     const location = useLocation();
     const navigate = useNavigate();
@@ -435,6 +436,11 @@ const AppWrapper = observer(() => {
                             >
                                 <Suspense fallback={<ChunkLoader message={localize('Please wait, loading analysis tools...')} />}>
                                     <AnalysisTools />
+                                </Suspense>
+                            </div>
+                            <div label={<span>Trading Bots</span>} id='id-trading-bots'>
+                                <Suspense fallback={<ChunkLoader message={localize('Please wait, loading trading bots...')} />}>
+                                    <TradingBots />
                                 </Suspense>
                             </div>
                             <div
